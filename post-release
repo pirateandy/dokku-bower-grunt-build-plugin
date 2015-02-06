@@ -3,7 +3,7 @@
 APP="$1"; IMAGE="dokku/$APP"
 echo "-----> Building Grunt app ..."
 COMMAND=$(cat <<EOF
-cd "/app/static" &&
+cd "/app" &&
 new_path="\$(find / -name npm | tail -1 | xargs -I % sh -c "dirname %")" &&
 PATH="\$PATH:\$new_path" &&
 PATH="\$PATH:\$(npm bin)" &&
@@ -11,9 +11,10 @@ npm install grunt &&
 npm install grunt-cli &&
 npm install bower &&
 npm update &&
-npm install &&
 bower --allow-root install &&
 bower --allow-root update &&
+cd "/app/static" &&
+npm install &&
 grunt build --force
 grunt prod --force
 EOF
