@@ -15,7 +15,7 @@ bower --allow-root install &&
 bower --allow-root update &&
 cd "/app/static" &&
 npm install &&
-grunt build --force
+grunt build --force &&
 grunt prod --force
 EOF
 )
